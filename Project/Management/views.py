@@ -1,10 +1,16 @@
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from django.contrib.auth.models import User
+from django.shortcuts import render, redirect, HttpResponse
+from django.contrib import messages, auth
+from django.contrib.auth.hashers import check_password
+# from django.contrib.auth.models import User
+from .models import PrimaryUser
 
 # Create your views here.
 def index(request):
-    return render(request, "index.html")
+    user = request.user
+    context = {
+        "user":user
+    }
+    return render(request, "index.html", context)
 
 def product(request):
     return render(request, "products.html")
@@ -20,16 +26,33 @@ def account(request):
 
 def login(request):
     if request.method == "POST":
-        print("Login User")
+        email = request.POST["email"]
+        password = request.POST["password"]
+        
+        user = PrimaryUser.objects.filter(email=email).first()
+        if not user:
+            messages.error(request, "Invalid Email")
+            return redirect("Management:login")
+        # check_password
+        if not check_password(password, user.password):
+            messages.error(request, "Invalid Password")
+            return redirect("Management:login")
+        
+        # login user
+        auth.login(request, user)
+        print("Login Successful")
+        messages.success(request, "Logged in successfully")
         return redirect("Management:index")
-    else:
-        return render(request, "login.html")
+    return render(request, "login.html")
+            
+        
 
 def register(request):
     if request.method == "POST":
         # get form values
         first_name = request.POST['firstname']
-        middle_name = request.POST["middlename"]
+        # middle_name = request.POST["middlename"]
+        username=request.POST["username"]
         last_name = request.POST["lastname"]
         email = request.POST["email"]
         password = request.POST["password"]
@@ -38,7 +61,26 @@ def register(request):
         # validate
         if password == password2:
             # check username
-            return
+            if PrimaryUser.objects.filter(username=username).exists():
+                messages.error(request, "Sorry that username is taken")
+                return redirect("Management:register")
+            else:
+                if PrimaryUser.objects.filter(email=email).exists():
+                    messages.error(request, "Sorry that email is being used")
+                    return redirect("Management:register")
+                else:
+                    user = PrimaryUser.objects.create(username=username,
+                                                      email=email, 
+                                                      first_name=first_name, 
+                                                      last_name=last_name)
+                    user.set_password(raw_password=password)
+                    # login user directly
+                    # auth.login(request, user)
+                    # messages.success(request, "Registration Successful")
+                    # return redirect("/")
+                    user.save()
+                    messages.success(request, "Registration Successful")
+                    return redirect("Management:login")
         else:
             messages.error(request, 'Passwords do not match')
             return redirect("Management:register")

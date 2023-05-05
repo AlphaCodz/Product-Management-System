@@ -125,10 +125,11 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-AUTH_USER_MODEL="Management.User"
+# AUTH_USER_MODEL="Management.P"
 
 
 MESSAGE_TAGS = {
     messages.ERROR: "danger",
+    messages.SUCCESS: "success"
     # 50: "critical",
 }
