@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.auth.models import User
 
 # Create your views here.
 def index(request):
@@ -17,7 +19,28 @@ def account(request):
     return render(request, "accounts.html")
 
 def login(request):
-    return render(request, "login.html")
+    if request.method == "POST":
+        print("Login User")
+        return redirect("Management:index")
+    else:
+        return render(request, "login.html")
 
 def register(request):
-    return render(request, "register.html")
+    if request.method == "POST":
+        # get form values
+        first_name = request.POST['firstname']
+        middle_name = request.POST["middlename"]
+        last_name = request.POST["lastname"]
+        email = request.POST["email"]
+        password = request.POST["password"]
+        password2 = request.POST["password2"]
+        
+        # validate
+        if password == password2:
+            # check username
+            return
+        else:
+            messages.error(request, 'Passwords do not match')
+            return redirect("Management:register")
+    else:
+        return render(request, "register.html")

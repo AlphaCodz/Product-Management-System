@@ -14,12 +14,14 @@
             </div>
             <div class="row mt-2">
               <div class="col-12">
-                <form action="{% url 'Management:login' %}" method="post" class="tm-login-form">
+                <!-- Alerts -->
+                {% include "alerts.html" %}
+                <form action="" method="POST" class="tm-login-form">
                   <div class="form-group">
                   {% csrf_token %}
                     <label for="username">First Name</label>
                     <input
-                      name="First Name"
+                      name="firstname"
                       type="text"
                       class="form-control validate"
                       id="first_name"
@@ -60,7 +62,7 @@
                               required
                             />
                             <div class="form-group mt-3">
-                                <label for="Last Name">Password</label>
+                                <label for="password">Password</label>
                                 <input
                                   name="password"
                                   type="password"
@@ -70,6 +72,18 @@
                                   required
                                 />
                   </div>
+
+                  <div class="form-group mt-3">
+                    <label for="password">Confirm Password</label>
+                    <input
+                      name="password2"
+                      type="password"
+                      class="form-control validate"
+                      id="password2"
+                      value=""
+                      required
+                    />
+      </div>
                   <div class="form-group mt-4">
                     <button
                       type="submit"
