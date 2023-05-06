@@ -21,10 +21,9 @@
                 </thead>
             {% for product in products %}
                 <tbody>
-                  
                   <tr>
                     <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">{{product.name}}</td>
+                    <td class="tm-product-name"> <a href="{% url 'Management:product_details' pk=product.pk  %}">{{product.name}}</a></td>
                     <td>{{product.units_sold}}</td>
                     <td>{{product.units_in_stock}}</td>
                     <td>{{product.expiry_date}}</td>
@@ -166,13 +165,16 @@
     <!-- https://jquery.com/download/ -->
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <!-- https://getbootstrap.com/ -->
-    <script>
+    {% comment %}
+      <script>
       $(function() {
         $(".tm-product-name").on("click", function() {
-          window.location.href = "{% url 'Management:edit_product' %}";
+          window.location.href = "{% url 'Management:product_details' pk=product.pk %}";
         });
       });
     </script>
+    {% endcomment %}
+    
   </body>
 </html>
 {% endblock body %}

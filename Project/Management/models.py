@@ -30,10 +30,32 @@ class Product(models.Model):
     expiry_date = models.DateField()
     units_in_stock=models.IntegerField()
     units_sold = models.IntegerField(null=True)
-    image = models.ImageField(upload_to="media/product_images")
+    image = models.ImageField(upload_to="media/product_images", null=True)
     
     def __str__(self):
         return self.name
+    
+class Order(models.Model):
+    STATUS = (
+        ("Moving", "Moving"),
+        ("Pending", "Pending"),
+        ("Cancelled", "Cancelled")
+    )
+    number = models.IntegerField()
+    status = models.CharField(max_length=9, choices=STATUS)
+    operators = models.CharField(max_length=120)
+    location = models.CharField(max_length=50)
+    distance = models.CharField(max_length=10)
+    start_date = models.DateTimeField()
+    est_delivery_due = models.DateTimeField()
+    
+    def __str__(self):
+        return str(self.number)
+    
+    # def save(self, *args, **kwargs):
+        
+    
+    
     
     
     

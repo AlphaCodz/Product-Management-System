@@ -2,23 +2,30 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import messages, auth
 from django.contrib.auth.hashers import check_password
 # from django.contrib.auth.models import User
-from .models import PrimaryUser, Product, Category
+from .models import PrimaryUser, Product, Category, Order
+from django.views.generic import ListView, DetailView
 
 # Create your views here.
 def index(request):
     user = request.user
+    # Get all orders
+    orders = Order.objects.all()
     context = {
-        "user":user
+        "user":user,
+        "orders":orders
     }
     return render(request, "index.html", context)
 
-def product(request):
-    if request.method == "GET":
-        products = Product.objects.all()
-        context = {
-            "products": products
-        }
-    return render(request, "products.html", context)
+class ProductList(ListView):
+    model = Product
+    template_name= 'product_list.html'
+    context_object_name = "products"
+    
+
+class ProductDetail(DetailView):
+    model = Product
+    template_name = 'product_detail.html'
+    context_object_name = "product"
 
 def add_product(request):
     if request.method == "POST":
@@ -48,9 +55,6 @@ def add_product(request):
     }
     
     return render(request, "add-product.html", context)
-
-def edit_product(request):
-    return render(request, "edit-product.html")
 
 def account(request):
     return render(request, "accounts.html")
