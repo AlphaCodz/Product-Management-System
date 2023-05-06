@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Product Admin - Dashboard HTML Template</title>
+    <title>Layo Foods</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
     <!-- https://fonts.google.com/specimen/Roboto -->
     <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}">
@@ -34,29 +34,45 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto h-90">
-                        {% block nav %}
-                        <li class="nav-item active">
+                        {% if request.path == "/app/" %}
+                            <li class="nav-item active">
+                        {% else %}
+                            <li class="nav-item"></li>
+                        {% endif %}
                             <a class="nav-link " href="{% url 'Management:index' %}">
                                 <i class="fas fa-tachometer-alt"></i>
                                 Dashboard
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
-                        {% endblock nav %}
-                        <li class="nav-item">
+
+                    {% if request.path == "/app/products/" %}
+                        <li class="nav-item active">
+                    {% else %}
+                        <li class="nav-item"></li>
+                    {% endif %}
                             <a class="nav-link" href="{% url 'Management:products' %}">
                                 <i class="fas fa-shopping-cart"></i>
                                 Products
                             </a>
                         </li>
-
-                        <li class="nav-item">
+                    
+                        {% if request.path == "/app/account" %}
+                        <li class="nav-item active">
+                    {% else %}
+                        <li class="nav-item"></li>
+                    {% endif %}
                             <a class="nav-link" href="{% url 'Management:account' %}">
                                 <i class="far fa-user"></i>
                                 Accounts
                             </a>
                         </li>
 
+                    {% if request.path == "/app/settings/" %}
+                        <li class="nav-item active">
+                    {% else %}
+                        <li class="nav-item"></li>
+                    {% endif %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">

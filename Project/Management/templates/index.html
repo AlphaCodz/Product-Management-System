@@ -129,7 +129,13 @@
                                     <tr>
                                         <th scope="row"><b># {{order.number}}</b></th>
                                         <td>
-                                            <div class="tm-status-circle moving">
+                                            {% if order.status == "Moving" %}
+                                                <div class="tm-status-circle moving">
+                                            {% elif order.status == "Pending" %}
+                                                <div class="tm-status-circle pending">
+                                            {% elif order.status == "Cancelled" %}
+                                                <div class="tm-status-circle cancelled">
+                                            {% endif %}
                                             </div>{{order.status}}
                                         </td>
                                         <td><b>{{order.operators}}</b></td>
