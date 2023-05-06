@@ -70,6 +70,7 @@
                     <select
                       class="custom-select tm-select-accounts"
                       id="category"
+                      name="category"
                     >
                     <option selected>Select category</option>
                     <!-- GET ALL CATEGORIES -->
@@ -112,7 +113,7 @@
                 <div class="tm-product-img-dummy mx-auto">
                   <i
                     class="fas fa-cloud-upload-alt tm-upload-icon"
-                    onclick="document.getElementById('fileInput').click();"
+                    onclick="document.getElementById('product_image').click();"
                   ></i>
                 </div>
                 <div class="custom-file mt-3 mb-3">
@@ -122,7 +123,7 @@
                     type="button"
                     class="btn btn-primary btn-block mx-auto"
                     value="UPLOAD PRODUCT IMAGE"
-                    onclick="document.getElementById('fileInput').click();"
+                    onclick="document.getElementById('product_image').click();"
                   />
                 </div>
               </div>

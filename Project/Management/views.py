@@ -31,7 +31,14 @@ def add_product(request):
     if request.method == "POST":
         name = request.POST["name"]
         description = request.POST["description"]
-        category = request.POST.get("category"),
+        category_id = request.POST.get("category")
+        # make category instance
+        try:
+            category = Category.objects.get(id=category_id)
+        except Category.DoesNotExist:
+            messages.error(request, "Category does not exist")
+            return redirect("Management:add_product")
+        
         expire_date = request.POST["expire_date"]
         units_in_stock = request.POST["units_in_stock"]
         product_image = request.FILES["product_image"]
