@@ -29,7 +29,8 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     expiry_date = models.DateField()
     units_in_stock=models.IntegerField()
-    image = models.ImageField(upload_to="media/product_image")
+    units_sold = models.IntegerField(null=True)
+    image = models.ImageField(upload_to="media/product_images")
     
     def __str__(self):
         return self.name

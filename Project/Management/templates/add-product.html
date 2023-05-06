@@ -11,9 +11,31 @@
                 <h2 class="tm-block-title d-inline-block">Add Product</h2>
               </div>
             </div>
+              <!-- alerts -->
+              {% if messages %}
+                    {% for message in messages %}
+                        <div id="message" class="container">
+                            <div class="alert alert-{{ message.tags }} alert-dismissible fade show text-center" role="alert">
+                                <button type="button" class="close" data-dismiss="alert">
+                                    <span aria-hidden="true">&times;</span>
+                                </button> 
+                            <strong>
+                                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                                    Error:
+                                {% else %}
+                                    {{ message.tags|title }}
+                                {% endif %}
+                            </strong>
+                        {{ message }}
+                        </div>   
+                        </div>
+                    {% endfor %}
+              {% endif %}
+
             <div class="row tm-edit-product-row">
               <div class="col-xl-6 col-lg-6 col-md-12">
-                <form action="" class="tm-edit-product-form">
+                <form action="" method="POST" class="tm-edit-product-form">
+                  {% csrf_token %}
                   <div class="form-group mb-3">
                     <label
                       for="name"
@@ -36,6 +58,8 @@
                       class="form-control validate"
                       rows="3"
                       required
+                      name="description"
+                      id="description"
                     ></textarea>
                   </div>
                   <div class="form-group mb-3">
@@ -47,10 +71,11 @@
                       class="custom-select tm-select-accounts"
                       id="category"
                     >
-                      <option selected>Select category</option>
-                      <option value="1">New Arrival</option>
-                      <option value="2">Most Popular</option>
-                      <option value="3">Trending</option>
+                    <option selected>Select category</option>
+                    <!-- GET ALL CATEGORIES -->
+                    {% for cat in category %}
+                      <option value={{cat.id}}>{{cat.name}}</option>
+                    {% endfor %}
                     </select>
                   </div>
                   <div class="row">
@@ -73,8 +98,8 @@
                             >Units In Stock
                           </label>
                           <input
-                            id="stock"
-                            name="stock"
+                            id="units_in_stock"
+                            name="units_in_stock"
                             type="text"
                             class="form-control validate"
                             required
@@ -91,12 +116,15 @@
                   ></i>
                 </div>
                 <div class="custom-file mt-3 mb-3">
-                  <input id="fileInput" type="file" style="display:none;" />
+                  <input type="file" style="display:none;" name="product_image"
+                  id="product_image" />
                   <input
                     type="button"
                     class="btn btn-primary btn-block mx-auto"
                     value="UPLOAD PRODUCT IMAGE"
                     onclick="document.getElementById('fileInput').click();"
+                    name="product_image"
+                    id="product_image"
                   />
                 </div>
               </div>

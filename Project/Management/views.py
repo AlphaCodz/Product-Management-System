@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import messages, auth
 from django.contrib.auth.hashers import check_password
 # from django.contrib.auth.models import User
-from .models import PrimaryUser
+from .models import PrimaryUser, Product, Category
 
 # Create your views here.
 def index(request):
@@ -13,10 +13,41 @@ def index(request):
     return render(request, "index.html", context)
 
 def product(request):
-    return render(request, "products.html")
+    if request.method == "GET":
+        products = Product.objects.all()
+        context = {
+            "products": products
+        }
+    return render(request, "products.html", context)
 
 def add_product(request):
-    return render(request, "add-product.html")
+    if request.method == "POST":
+        name = request.POST["name"]
+        description = request.POST["description"]
+        category = request.POST.get("category"),
+        expire_date = request.POST["expire_date"]
+        units_in_stock = request.POST["units_in_stock"]
+        product_image = request.FILES["product_image"]
+        
+        product = Product.objects.create(name=name, 
+                                        description=description,
+                                        category=category,
+                                        expiry_date=expire_date,
+                                        units_in_stock=units_in_stock,
+                                        image=product_image
+                                        )
+        product.save()
+        messages.success(request, "Product Added Successfully")
+        return redirect("Management:products")
+    
+    # GET PRODUCT CATEGORY
+        # get all categories
+    category = Category.objects.all()
+    context = {
+        "category":category
+    }
+    
+    return render(request, "add-product.html", context)
 
 def edit_product(request):
     return render(request, "edit-product.html")
