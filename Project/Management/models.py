@@ -30,7 +30,7 @@ class Product(models.Model):
     expiry_date = models.DateField()
     units_in_stock=models.IntegerField()
     units_sold = models.IntegerField(null=True)
-    image = models.ImageField(upload_to="media/product_images", null=True)
+    image = models.ImageField(upload_to="product_images/", null=True)
     
     def __str__(self):
         return self.name

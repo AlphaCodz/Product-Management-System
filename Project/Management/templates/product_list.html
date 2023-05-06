@@ -23,7 +23,7 @@
                 <tbody>
                   <tr>
                     <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name"> <a href="{% url 'Management:product_details' pk=product.pk  %}">{{product.name}}</a></td>
+                    <td class="tm-product-name"> <a href="{% url 'Management:product_details' pk=product.pk  %}" style="text-decoration: none; color:white;">{{product.name}}</a></td>
                     <td>{{product.units_sold}}</td>
                     <td>{{product.units_in_stock}}</td>
                     <td>{{product.expiry_date}}</td>
