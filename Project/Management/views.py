@@ -24,7 +24,15 @@ class ProductList(ListView):
     def get_category(self, *args, **kwargs):
         categories = Category.objects.all()
         return categories
+    
+    def post(self, request, *args, **kwargs):
+        # Get the list of IDs of selected items to delete
+        selected_items = request.POST.getlist('selected_items')
         
+        if selected_items:
+            Product.objects.filter(id__in=selected_items).delete()
+        return redirect('Management:products')
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["category"] = self.get_category() 
@@ -42,6 +50,7 @@ def add_product(request):
         name = request.POST["name"]
         description = request.POST["description"]
         category_id = request.POST.get("category")
+        unit_sold = request.POST["units_sold"]
         # make category instance
         try:
             category = Category.objects.get(id=category_id)
@@ -58,7 +67,8 @@ def add_product(request):
                                         category=category,
                                         expiry_date=expire_date,
                                         units_in_stock=units_in_stock,
-                                        image=product_image
+                                        image=product_image,
+                                        units_sold=unit_sold
                                         )
         product.save()
         messages.success(request, "Product Added Successfully")
