@@ -8,6 +8,8 @@ class PrimaryUser(User):
         ("Female", "Female")
     )
     gender = models.CharField(max_length=6, choices=GENDER, null=True)
+    image = models.ImageField(upload_to="profile_image/", null=True)
+    phone_no = models.BigIntegerField(null=True)
     
     def __str__(self):
         return self.first_name

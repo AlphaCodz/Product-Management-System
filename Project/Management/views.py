@@ -21,6 +21,16 @@ class ProductList(ListView):
     template_name= 'product_list.html'
     context_object_name = "products"
     
+    def get_category(self, *args, **kwargs):
+        categories = Category.objects.all()
+        return categories
+        
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["category"] = self.get_category() 
+        return context
+    
+    
 
 class ProductDetail(DetailView):
     model = Product
@@ -63,8 +73,13 @@ def add_product(request):
     
     return render(request, "add-product.html", context)
 
+
 def account(request):
-    return render(request, "accounts.html")
+    user = request.user
+    context = {
+        "user":user
+    }
+    return render(request, "accounts.html", context)
 
 def login(request):
     if request.method == "POST":
@@ -97,8 +112,11 @@ def register(request):
         username=request.POST["username"]
         last_name = request.POST["lastname"]
         email = request.POST["email"]
+        phone_no = request.POST["phone_no"]
+        profile_img = request.FILES["image"]
         password = request.POST["password"]
         password2 = request.POST["password2"]
+        
         
         # validate
         if password == password2:
@@ -114,7 +132,10 @@ def register(request):
                     user = PrimaryUser.objects.create(username=username,
                                                       email=email, 
                                                       first_name=first_name, 
-                                                      last_name=last_name)
+                                                      last_name=last_name,
+                                                      phone_no=phone_no,
+                                                      image=profile_img)
+                                                      
                     user.set_password(raw_password=password)
                     # login user directly
                     # auth.login(request, user)

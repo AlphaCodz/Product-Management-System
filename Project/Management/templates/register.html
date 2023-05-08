@@ -9,14 +9,14 @@
           <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
             <div class="row">
               <div class="col-12 text-center">
-                <h2 class="tm-block-title mb-4">Welcome to Layo Foods, Register</h2>
+                <h2 class="tm-block-title mb-4" style="font-family:Verdana, Geneva, Tahoma, sans-serif;">Welcome to Layo Foods, Register</h2>
               </div>
             </div>
             <div class="row mt-2">
               <div class="col-12">
                 <!-- Alerts -->
                 {% include "alerts.html" %}
-                <form action="" method="POST" class="tm-login-form">
+                <form action="" method="POST" class="tm-login-form" enctype="multipart/form-data">
                   <div class="form-group">
                   {% csrf_token %}
                     <label for="username">First Name</label>
@@ -61,6 +61,18 @@
                               value=""
                               required
                             />
+
+                            <div class="form-group mt-3">
+                              <label for="phone_no">Phone Number</label>
+                              <input
+                                name="phone_no"
+                                type="text"
+                                class="form-control validate"
+                                id="phone_no"
+                                value=""
+                                required
+                              />
+                              
                             <div class="form-group mt-3">
                                 <label for="password">Password</label>
                                 <input
@@ -84,6 +96,24 @@
                       required
                     />
       </div>
+      <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+        <div class="tm-product-img-dummy mx-auto">
+          <i
+            class="fas fa-cloud-upload-alt tm-upload-icon"
+            onclick="document.getElementById('image').click();"
+          ></i>
+        </div>
+        <div class="custom-file mt-3 mb-3">
+          <input type="file" style="display:none;" name="image"
+          id="image" />
+          <input
+            type="button"
+            class="btn btn-primary btn-block mx-auto"
+            value="PROFILE IMAGE"
+            onclick="document.getElementById('image').click();"
+          />
+        </div>
+      </div>
                   <div class="form-group mt-4">
                     <button
                       type="submit"
@@ -99,7 +129,7 @@
         </div>
       </div>
     </div>
-    <footer class="tm-footer row tm-mt-small">
+    <!-- <footer class="tm-footer row tm-mt-small">
       <div class="col-12 font-weight-light">
         <p class="text-center text-white mb-0 px-4 small">
           Copyright &copy; <b>2018</b> All rights reserved. 
@@ -107,7 +137,7 @@
           Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template Mo</a>
         </p>
       </div>
-    </footer>
+    </footer> -->
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
     <!-- https://jquery.com/download/ -->
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
