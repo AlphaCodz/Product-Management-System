@@ -41,7 +41,8 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["https://product-management-system-production.up.railway.app/", 
+                 "http://127.0.0.1:8000/"]
 
 
 # Application definition
