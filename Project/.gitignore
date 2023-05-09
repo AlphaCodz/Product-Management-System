@@ -5,3 +5,4 @@ staticfiles/
 product_images/
 profile_images/
 migrations/
+__pycache__/
