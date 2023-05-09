@@ -33,7 +33,7 @@ class Product(models.Model):
     units_in_stock=models.IntegerField()
     units_sold = models.IntegerField(null=True)
     image = models.ImageField(upload_to="product_images/", null=True)
-    
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
     def __str__(self):
         return self.name
     
@@ -50,6 +50,7 @@ class Order(models.Model):
     distance = models.CharField(max_length=10)
     start_date = models.DateTimeField()
     est_delivery_due = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
     
     def __str__(self):
         return str(self.number)
