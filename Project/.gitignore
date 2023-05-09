@@ -1,7 +1,8 @@
 .venv/
-media/
 staticfiles/
 *db.sqlite3
 product_images/
 profile_images/
 migrations/
+media/
+
