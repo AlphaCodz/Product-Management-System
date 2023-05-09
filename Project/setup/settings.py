@@ -154,7 +154,15 @@ MESSAGE_TAGS = {
 
 
 # CORS 
-CORS_ORIGIN_ALLOW_ALL= True
+# CORS_ORIGIN_ALLOW_ALL= True
+
+CORS_ALLOWED_ORIGINS = [
+    "https://product-management-system-production.up.railway.app",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://product-management-system-production.up.railway.app",
+]
 
 CORS_ALLOW_METHODS = [
     "DELETE",
