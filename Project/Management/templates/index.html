@@ -40,7 +40,6 @@
                             <div class="tm-notification-items">
                                 
                                 {% for product in new_products %}
-                                
                                     <div class="media tm-notification-item">
                                         <div class="media-body"> 
                                             {% if product.category.name == "New Arrival"%}
@@ -53,7 +52,7 @@
                                                 <p class="mb-2">Layo Store has a <b style="color:cyan;">{{product.category.name}}</b> product <b>{{ product.name }}</b></p>
                                                 <span class="tm-small tm-text-color-secondary">{{ product.created_at|timesince }} hours ago</span>
                                             {% endif %}
-                                        
+                                                        
                                         </div>
                                     </div>
                                 {% endfor %}
