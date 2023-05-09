@@ -1,5 +1,6 @@
 .venv/
-migrations/
-*.env
-*db.sqlite3
+media/
 staticfiles/
+*db.sqlite3
+product_images/
+profile_images/
