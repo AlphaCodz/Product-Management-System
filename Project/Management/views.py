@@ -4,15 +4,24 @@ from django.contrib.auth.hashers import check_password
 # from django.contrib.auth.models import User
 from .models import PrimaryUser, Product, Category, Order
 from django.views.generic import ListView, DetailView
+from datetime import timedelta, datetime
 
 # Create your views here.
 def index(request):
     user = request.user
+    # Get the datetime for 2 hours ago
+    two_hrs_ago = datetime.now() - timedelta(hours=2)
+    # Get List of Products
+    new_products = Product.objects.filter(created_at__gte=two_hrs_ago)
     # Get all orders
     orders = Order.objects.all()
+    # Get new orders
+    new_orders = Order.objects.filter(created_at__gte=two_hrs_ago)
     context = {
         "user":user,
-        "orders":orders
+        "orders":orders,
+        "new_products": new_products,
+        "new_orders": new_orders
     }
     return render(request, "index.html", context)
 
