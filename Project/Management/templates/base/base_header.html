@@ -25,7 +25,7 @@
         <nav class="navbar navbar-expand-xl">
             <div class="container h-60">
                 <a class="navbar-brand" href="{% url 'Management:index' %}">
-                    <h1 class="tm-site-title mb-0" style="font-family: cursive;">Layo Foods</h1>
+                    <h1 class="tm-site-title mb-0" style="font-family:monospace;">Jad</h1>
                 </a>
                 <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,26 +66,6 @@
                                 <i class="far fa-user"></i>
                                 Accounts
                             </a>
-                        </li>
-
-                    {% if request.path == "/app/settings/" %}
-                        <li class="nav-item active">
-                    {% else %}
-                        <li class="nav-item"></li>
-                    {% endif %}
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-cog"></i>
-                                <span>
-                                    Settings <i class="fas fa-angle-down"></i>
-                                </span>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Profile</a>
-                                <a class="dropdown-item" href="#">Billing</a>
-                                <a class="dropdown-item" href="#">Customize</a>
-                            </div>
                         </li>
                     </ul>
                     <ul class="navbar-nav">

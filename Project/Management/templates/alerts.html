@@ -12,8 +12,13 @@
                     {{ message.tags|title }}
                 {% endif %}
             </strong>
-        {{ message }}
+                {{ message }}
         </div>   
         </div>
+        <script>
+            setTimeout(function() {
+                document.getElementById("message").remove();
+            }, 4000);
+        </script>
     {% endfor %}
 {% endif %}
