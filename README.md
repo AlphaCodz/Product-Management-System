@@ -14,5 +14,5 @@ making it easier to manage and organize their inventory.
   <li>Market cap progress: The website tracks the progress of businesses' market capitalization.</li>
   <li>Record keeping: Users can create a record list of all the goods available.</li>
   <li>User management: This website will have features that allow businesses to manage their users, such as adding or removing users.</li>
-  <li>Notification management: This website will have features that notify users of important events, such as when a stock is running low or when an incoming good has been cancelled.</li>
+  <li>Notification management: This website will have features that notify users of important events, such as when a stock is running low or when an incoming good has been cancelled or about to expire.</li>
 </ol>
