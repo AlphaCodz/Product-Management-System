@@ -9,7 +9,7 @@ function drawLineChart() {
           {
             scaleLabel: {
               display: true,
-              labelString: "Hits"
+              labelString: "Milestone"
             }
           }
         ]
@@ -34,7 +34,7 @@ function drawLineChart() {
         ],
         datasets: [
           {
-            label: "Latest Hits",
+            label: "Most Popular",
             data: [88, 68, 79, 57, 50, 55, 70],
             fill: false,
             borderColor: "rgb(75, 192, 192)",
@@ -42,7 +42,7 @@ function drawLineChart() {
             pointRadius: 0
           },
           {
-            label: "Popular Hits",
+            label: "Trending",
             data: [33, 45, 37, 21, 55, 74, 69],
             fill: false,
             borderColor: "rgba(255,99,132,1)",
@@ -50,10 +50,10 @@ function drawLineChart() {
             pointRadius: 0
           },
           {
-            label: "Featured",
+            label: "New Arrival",
             data: [44, 19, 38, 46, 85, 66, 79],
             fill: false,
-            borderColor: "rgba(153, 102, 255, 1)",
+            borderColor: "rgba(41, 171, 135)",
             cubicInterpolationMode: "monotone",
             pointRadius: 0
           }
@@ -81,7 +81,7 @@ function drawBarChart() {
             },
             scaleLabel: {
               display: true,
-              labelString: "Hits"
+              labelString: "Product Categories"
             }
           }
         ]
@@ -105,10 +105,10 @@ function drawBarChart() {
     configBar = {
       type: "horizontalBar",
       data: {
-        labels: ["Red", "Aqua", "Green", "Yellow", "Purple", "Orange", "Blue"],
+        labels: ["Clothing", "Food", "Beverages", "Appliances", "Phones", "Laptops", "Shoes"],
         datasets: [
           {
-            label: "# of Hits",
+            label: "Product Growth",
             data: [33, 40, 28, 49, 58, 38, 44],
             backgroundColor: [
               "#F7604D",
@@ -159,15 +159,15 @@ function drawPieChart() {
       data: {
         datasets: [
           {
-            data: [18.24, 6.5, 9.15],
+            data: [500, 13800, 2983],
             backgroundColor: ["#F7604D", "#4ED6B8", "#A8D582"],
             label: "Storage"
           }
         ],
         labels: [
-          "Used Storage (18.240GB)",
-          "System Storage (6.500GB)",
-          "Available Storage (9.150GB)"
+          "New Arrival (500)",
+          "Trending (13800)",
+          "Most Popular (2983)"
         ]
       },
       options: optionsPie
