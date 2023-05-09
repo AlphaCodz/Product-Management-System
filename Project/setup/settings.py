@@ -41,8 +41,7 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["https://product-management-system-production.up.railway.app", 
-                 "http://127.0.0.1:8000/"]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -59,6 +58,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'whitenoise.middleware.WhiteNoiseMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -154,7 +154,7 @@ MESSAGE_TAGS = {
 
 
 # CORS 
-CORS_ORIGIN_ALLOW_ALL=True
+CORS_ORIGIN_ALLOW_ALL= True
 
 CORS_ALLOW_METHODS = [
     "DELETE",
