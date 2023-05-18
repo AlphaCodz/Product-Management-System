@@ -68,13 +68,20 @@ def add_product(request):
             return redirect("Management:add_product")
         
         expire_date = request.POST["expire_date"]
+        
+        try:
+            expire_date_str = datetime.strptime(expire_date, "%Y-%m-%d").date()
+        except ValueError:
+            messages.error(request, "Invalid Expiry Date. Please use YYYY-MM-DD.")
+            return redirect("Management:add_product")
+        
         units_in_stock = request.POST["units_in_stock"]
         product_image = request.FILES["product_image"]
         
         product = Product.objects.create(name=name, 
                                         description=description,
                                         category=category,
-                                        expiry_date=expire_date,
+                                        expiry_date=expire_date_str,
                                         units_in_stock=units_in_stock,
                                         image=product_image,
                                         units_sold=unit_sold
