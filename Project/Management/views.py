@@ -47,8 +47,6 @@ class ProductList(ListView):
         context["category"] = self.get_category() 
         return context
     
-    
-
 class ProductDetail(DetailView):
     model = Product
     template_name = 'product_detail.html'
